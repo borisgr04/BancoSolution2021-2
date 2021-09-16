@@ -47,7 +47,6 @@ namespace Banco.Domain.Test.CuentasCorriente
             #region DADO EL CLIENTE TIENE UNA CUENTA CORRIENTE CON UN SOBREGIRO PERMITIDO DE 1.000.000
             var cuentaCorriente = new CuentaCorriente(numero: "10001", nombre: "Cuenta Ejemplo", sobregiro:1000000);
             #endregion
-
             #region CUANDO retire 100.000 pesos
             decimal valorRetiro = 100000;
             string respuesta = cuentaCorriente.Retirar(valorRetiro: valorRetiro, fecha: new DateTime(2020, 2, 1));

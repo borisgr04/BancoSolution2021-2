@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banco.Domain.CuentaBancaria;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,24 +7,15 @@ using System.Threading.Tasks;
 
 namespace Banco.Domain
 {
-    public class CuentaAhorro
+    public class CuentaAhorro: CuentaBancariaBase
     {
-        public string Numero { get; private set; }//encapsulamiento // guardar la integridad
-        public string Nombre { get; private set; }
-        public decimal Saldo { get; private set; }
-
-        private List<Movimiento> _movimientos;
-
-        public IReadOnlyCollection<Movimiento> Movimientos => _movimientos.AsReadOnly();
-
-        public CuentaAhorro(string numero, string nombre)
+      
+        public CuentaAhorro(string numero, string nombre): base(numero, nombre)
         {
-            Numero = numero;
-            Nombre = nombre;
-            _movimientos = new List<Movimiento>();
+        
         }
 
-        public string Consignar(decimal valorConsignacion, DateTime fecha)
+        public override string Consignar(decimal valorConsignacion, DateTime fecha)
         {
             if (valorConsignacion < 0)
             {
@@ -31,28 +23,18 @@ namespace Banco.Domain
             }
             if (!_movimientos.Any() && valorConsignacion >= 50000)
             {
-                _movimientos.Add(new Movimiento(cuentaAhorro: this, fecha: fecha, tipo: "CONSIGNACION", valor: valorConsignacion));
+                _movimientos.Add(new Movimiento(cuentaBancaria: this, fecha: fecha, tipo: "CONSIGNACION", valor: valorConsignacion));
                 Saldo += valorConsignacion;
-
                 return $"Su Nuevo Saldo es de {Saldo:c2} pesos m/c";
             }
             throw new NotImplementedException();
         }
-    }
 
-    public class Movimiento
-    {
-        public Movimiento(CuentaAhorro cuentaAhorro, DateTime fecha, string tipo, decimal valor)
+        public override string Retirar(decimal valorRetiro, DateTime fecha)
         {
-            CuentaAhorro = cuentaAhorro;
-            Fecha = fecha;
-            Tipo = tipo;
-            Valor = valor;
+            throw new NotImplementedException();
         }
-
-        public CuentaAhorro CuentaAhorro { get; private set; }
-        public DateTime Fecha { get; private set; }
-        public string Tipo { get; private set; }
-        public decimal Valor { get; private set; }
     }
+
+   
 }
