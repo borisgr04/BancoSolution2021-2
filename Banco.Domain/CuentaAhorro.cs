@@ -32,9 +32,16 @@ namespace Banco.Domain
 
         public override string Retirar(decimal valorRetiro, DateTime fecha)
         {
+            var saldoTemporal = Saldo - valorRetiro;
+            if (saldoTemporal >= 20000) 
+            {
+                Saldo = saldoTemporal;
+                return $"Su Nuevo Saldo es de {Saldo:c2} pesos m/c";
+            }
             throw new NotImplementedException();
         }
     }
+    
 
    
 }
