@@ -56,6 +56,8 @@ namespace Banco.Domain.CuentaBancaria
         {
             _movimientos.Add(new Movimiento(cuentaBancaria: this, fecha: fecha, tipo: tipo, valor: valor));
         }
-      
+
+    
+
     }
 }
