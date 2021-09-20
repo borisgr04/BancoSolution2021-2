@@ -17,7 +17,7 @@ namespace Banco.Domain
 
         public override string Consignar(decimal valorConsignacion, DateTime fecha)
         {
-            if (valorConsignacion < 0)
+            if (!_movimientos.Any() && valorConsignacion < 50000)
             {
                 return "El valor a consignar es incorrecto";
             }
