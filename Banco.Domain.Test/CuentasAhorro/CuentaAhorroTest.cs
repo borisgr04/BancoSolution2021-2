@@ -75,8 +75,9 @@ namespace Banco.Domain.Test.CuentasAhorro
             decimal valorRetiro = 30000;
             string respuestaRetiro = cuentaAhorro.Retirar(valorRetiro: valorRetiro, fecha: new DateTime(2020, 2, 1));
             #endregion
-           
+
             #region ENTONCES El sistema presentará el mensaje. “Su Nuevo Saldo es de $ 20.001,00 pesos m/c” 
+            Assert.AreEqual(1, cuentaAhorro.Movimientos.Count);//Criterio general
             Assert.AreEqual("Su Nuevo Saldo es de $ 20.001,00 pesos m/c", respuestaRetiro);
             #endregion
       

@@ -23,10 +23,7 @@ namespace Banco.Domain.CuentaBancaria
 
         public virtual string Consignar(decimal valorConsignacion, DateTime fecha)
         {
-            if (!_movimientos.Any() && valorConsignacion < 100000)
-            {
-                return "El valor a consignar es incorrecto";
-            }
+           
             throw new NotImplementedException();
         }
 
