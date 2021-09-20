@@ -20,13 +20,13 @@ namespace Banco.Domain
             var nuevoSaldoTemporal = Saldo - valorRetiro - cuatroPorMil;
             if (nuevoSaldoTemporal > Sobregiro)
             {
-                _movimientos.Add(new Movimiento(cuentaBancaria: this, fecha: fecha, tipo: "RETIRO", valor: valorRetiro));
-                _movimientos.Add(new Movimiento(cuentaBancaria: this, fecha: fecha, tipo: "IMP4XMIL", valor: cuatroPorMil));
-                Saldo = nuevoSaldoTemporal;
+                AddMovimientoDisminuyeSaldo(valorRetiro, fecha, "RETIRO");
+                AddMovimientoDisminuyeSaldo(cuatroPorMil, fecha, "IMP4XMIL");
                 return $"Su Nuevo Saldo es de {Saldo:c2} pesos m/c";
             }
             throw new NotImplementedException();
         }
+
     }
 
 

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,7 +78,8 @@ namespace Banco.Domain.Test.CuentasAhorro
             #endregion
 
             #region ENTONCES El sistema presentará el mensaje. “Su Nuevo Saldo es de $ 20.001,00 pesos m/c” 
-            Assert.AreEqual(1, cuentaAhorro.Movimientos.Count);//Criterio general
+            var movimientoRetiro = cuentaAhorro.Movimientos.FirstOrDefault(t => t.Tipo == "RETIRO");
+            movimientoRetiro.Valor.Should().Be(30000);
             Assert.AreEqual("Su Nuevo Saldo es de $ 20.001,00 pesos m/c", respuestaRetiro);
             #endregion
       

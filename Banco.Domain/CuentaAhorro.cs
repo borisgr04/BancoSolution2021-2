@@ -19,7 +19,7 @@ namespace Banco.Domain
             var saldoTemporal = Saldo - valorRetiro;
             if (saldoTemporal >= 20000)
             {
-                Saldo = saldoTemporal;
+                AddMovimientoDisminuyeSaldo(valorRetiro, fecha, "RETIRO");
                 return $"Su Nuevo Saldo es de {Saldo:c2} pesos m/c";
             }
             throw new NotImplementedException();
