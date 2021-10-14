@@ -19,6 +19,7 @@ namespace Banco.WebApi.Controllers
         public ConsignacionController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            
         }
 
         [HttpPost]

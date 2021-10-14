@@ -13,6 +13,10 @@ namespace Banco.Application
         {
             _unitOfWork.BeginTransaction();
             var cuentaBancaria = _unitOfWork.CuentaBancariaRepository.Find(command.NumeroCuenta);
+            if (cuentaBancaria == null) 
+            {
+                return new ConsignarResponse() { EsValido = false, Mensaje =$"No existe cuenta bancaria con número {command.NumeroCuenta}" };
+            }
             var respuesta=cuentaBancaria.Consignar(command.ValorConsignacion, command.Fecha);
             _unitOfWork.CuentaBancariaRepository.Update(cuentaBancaria);
             _unitOfWork.Commit();

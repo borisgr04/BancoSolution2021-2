@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +32,10 @@ namespace Banco.WebApi
         {
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();//Configuracion de la inyeccion de dependencias
-                     
+
+            services.AddDbContext<BancoContext>(opt => opt.UseInMemoryDatabase("BancoContextInMemory")
+            .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+            );
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

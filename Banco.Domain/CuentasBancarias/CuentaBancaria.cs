@@ -6,7 +6,7 @@ namespace Banco.Domain.CuentasBancarias
 {
     public abstract class CuentaBancaria
     {
-
+        public int Id { get; private set; }
         protected List<Movimiento> _movimientos;
         public string Numero { get; private set; }
         public string Nombre { get; private set; }

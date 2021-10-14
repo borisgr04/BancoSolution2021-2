@@ -11,25 +11,20 @@ namespace Banco.Infrastructure
 {
     public class CuentaBancariaMemoryRepository : ICuentaBancariaRepository
     {
-        private readonly List<CuentaBancaria> _cuentasBancarias;
-
-        public CuentaBancariaMemoryRepository()
+        private readonly BancoContext _bancoContext;
+        public CuentaBancariaMemoryRepository(BancoContext bancoContext)
         {
-            _cuentasBancarias = new List<CuentaBancaria>()
-            {
-                new   CuentaAhorro("10101","CUENTA AHORRO 1"),
-                new   CuentaCorriente("20202","CUENTA CORRIENTE 1",100000)
-            };
+            _bancoContext = bancoContext;
         }
         public CuentaBancaria Find(string numero)
         {
-            var cuentaBancaria=_cuentasBancarias.FirstOrDefault(t => t.Numero == numero);
+            var cuentaBancaria= _bancoContext.CuentasBancarias.FirstOrDefault(t => t.Numero == numero);
             return cuentaBancaria;
         }
 
         public void Update(CuentaBancaria cuentaBancaria)
         {
-            //COMO ESTAMOS EN MEMORIA LA ACTUIAIZCION ES AUTOMATICA
+            _bancoContext.CuentasBancarias.Update(cuentaBancaria as CuentaAhorro);
         }
     }
 }
