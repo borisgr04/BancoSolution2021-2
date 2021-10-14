@@ -1,9 +1,9 @@
-﻿using Banco.Domain.CuentaBancaria;
+﻿using Banco.Domain.CuentasBancarias;
 using System;
 
 namespace Banco.Domain
 {
-    public class CuentaCorriente : CuentaBancariaBase
+    public class CuentaCorriente : CuentasBancarias.CuentaBancaria
     {
         public decimal Sobregiro { get; private set; }
 

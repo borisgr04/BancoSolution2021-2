@@ -1,9 +1,9 @@
-﻿using Banco.Domain.CuentaBancaria;
+﻿using Banco.Domain.CuentasBancarias;
 using System;
 
 namespace Banco.Domain
 {
-    public class CuentaAhorro : CuentaBancariaBase
+    public class CuentaAhorro : CuentasBancarias.CuentaBancaria
     {
 
         public CuentaAhorro(string numero, string nombre) :

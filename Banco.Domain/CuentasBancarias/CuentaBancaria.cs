@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Banco.Domain.CuentaBancaria
+namespace Banco.Domain.CuentasBancarias
 {
-    public abstract class CuentaBancariaBase
+    public abstract class CuentaBancaria
     {
 
         protected List<Movimiento> _movimientos;
@@ -13,7 +13,7 @@ namespace Banco.Domain.CuentaBancaria
         public decimal Saldo { get; private set; }
         protected decimal ValorMinimoConsignacionInicial; 
 
-        public CuentaBancariaBase(string numero, string nombre, decimal valorMinimoConsignacionInicial)
+        protected CuentaBancaria(string numero, string nombre, decimal valorMinimoConsignacionInicial)
         {
             Numero = numero;
             Nombre = nombre;
