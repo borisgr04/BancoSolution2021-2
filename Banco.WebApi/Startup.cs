@@ -33,9 +33,12 @@ namespace Banco.WebApi
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();//Configuracion de la inyeccion de dependencias
 
-            services.AddDbContext<BancoContext>(opt => opt.UseInMemoryDatabase("BancoContextInMemory")
-            .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            );
+            //services.AddDbContext<BancoContext>(opt => opt.UseInMemoryDatabase("BancoContextInMemory")
+            //.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+            //);
+
+            var connectionString = Configuration.GetConnectionString("BancoContext");
+            services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(connectionString));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
